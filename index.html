@@ -258,7 +258,7 @@
 
         <input
           id="javaAddress"
-          value="playixlol.minekeep.gg"
+          value="playixglol.minekeep.gg"
           readonly
           aria-label="Java Minecraft server address"
         >
@@ -291,12 +291,13 @@
         id="copyStatus"
         class="muted"
         style="font-size:12px;min-height:18px;"
+        aria-live="polite"
       ></p>
 
 
       <p class="muted" style="font-size:12px;">
         Java:
-        <strong>playixlol.minekeep.gg</strong>
+        <strong>playixglol.minekeep.gg</strong>
         ·
         Bedrock:
         <strong>playixglol.bedrock.minekeep.gg</strong>
@@ -497,47 +498,53 @@
 <script>
 
 function copyText(id, message) {
-
   const input = document.getElementById(id);
+  const status = document.getElementById("copyStatus");
 
-  navigator.clipboard.writeText(input.value)
+  if (!input) {
+    return;
+  }
 
-    .then(() => {
+  const attemptCopy = () => {
+    input.focus();
+    input.select();
+    input.setSelectionRange(0, input.value.length);
 
-      document.getElementById("copyStatus").textContent = message;
+    try {
+      const successful = document.execCommand("copy");
+      if (successful) {
+        status.textContent = message;
+        return;
+      }
+    } catch (error) {
+      console.warn("Fallback copy failed:", error);
+    }
 
-    })
+    status.textContent = "Copy failed. Please copy manually.";
+  };
 
-    .catch(() => {
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(input.value)
+      .then(() => {
+        status.textContent = message;
+      })
+      .catch(() => {
+        attemptCopy();
+      });
+    return;
+  }
 
-      input.select();
-
-      document.execCommand("copy");
-
-      document.getElementById("copyStatus").textContent = message;
-
-    });
-
+  attemptCopy();
 }
 
 
 function copyJava() {
-
-  copyText(
-    "javaAddress",
-    "Java address copied!"
-  );
-
+  copyText("javaAddress", "Java address copied!");
 }
 
 
 function copyBedrock() {
-
-  copyText(
-    "bedrockAddress",
-    "Bedrock address copied!"
-  );
-
+  copyText("bedrockAddress", "Bedrock address copied!");
 }
 
 </script>
