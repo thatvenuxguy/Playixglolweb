@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>playixg — Minecraft Server</title>
+  <meta name="description" content="playixg Minecraft server — Java + Bedrock crossplay, hub, survival and community.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #070b12;
+      color: #f5f7fb;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .wrap {
+      max-width: 1080px;
+      margin: auto;
+      padding: 24px;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px 0 34px;
+    }
+
+    .brand {
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: -1px;
+    }
+
+    nav {
+      display: flex;
+      gap: 18px;
+      color: #aab4c4;
+      font-size: 14px;
+    }
+
+    .hero {
+      border: 1px solid #1c2635;
+      border-radius: 24px;
+      padding: 52px 34px;
+      background: linear-gradient(145deg, #0e1624, #090d15);
+      text-align: center;
+      box-shadow: 0 20px 60px #0008;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 7px 12px;
+      border-radius: 999px;
+      background: #14251d;
+      color: #66e59a;
+      font-size: 12px;
+      font-weight: 800;
+    }
+
+    h1 {
+      font-size: clamp(42px, 9vw, 82px);
+      margin: 18px 0 8px;
+      letter-spacing: -4px;
+    }
+
+    .sub {
+      color: #aab4c4;
+      max-width: 650px;
+      margin: auto;
+      line-height: 1.6;
+    }
+
+    .join {
+      margin: 28px auto 0;
+      max-width: 610px;
+      display: flex;
+      gap: 10px;
+      background: #0a101a;
+      padding: 10px;
+      border: 1px solid #263245;
+      border-radius: 15px;
+    }
+
+    .join input {
+      flex: 1;
+      min-width: 0;
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: white;
+      padding: 12px;
+      font-size: 15px;
+    }
+
+    button,
+    .button {
+      border: 0;
+      cursor: pointer;
+      border-radius: 11px;
+      padding: 12px 18px;
+      font-weight: 800;
+      background: #fff;
+      color: #070b12;
+    }
+
+    .discord {
+      display: inline-block;
+      margin-top: 18px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 18px;
+    }
+
+    .card {
+      background: #0d131e;
+      border: 1px solid #1c2635;
+      border-radius: 18px;
+      padding: 22px;
+    }
+
+    .icon {
+      font-size: 25px;
+    }
+
+    .card h3 {
+      margin: 12px 0 7px;
+    }
+
+    .card p {
+      color: #96a1b2;
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .info {
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .row {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 12px 0;
+      border-bottom: 1px solid #202a39;
+    }
+
+    .row:last-child {
+      border-bottom: 0;
+    }
+
+    .muted {
+      color: #8f9bad;
+    }
+
+    .plugins {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px;
+    }
+
+    .tag {
+      padding: 7px 10px;
+      border: 1px solid #29364a;
+      border-radius: 999px;
+      color: #c9d2df;
+      font-size: 12px;
+      background: #0a1019;
+    }
+
+    footer {
+      text-align: center;
+      color: #667286;
+      padding: 35px 0 10px;
+      font-size: 13px;
+    }
+
+    @media (max-width: 720px) {
+      .grid,
+      .info {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        align-items: flex-start;
+      }
+
+      nav {
+        display: none;
+      }
+
+      .hero {
+        padding: 38px 18px;
+      }
+
+      .join {
+        flex-direction: column;
+      }
+
+      .join button {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="wrap">
+
+  <header>
+    <div class="brand">playixg</div>
+
+    <nav>
+      <a href="#server">Server</a>
+      <a href="#features">Features</a>
+      <a href="#plugins">Plugins</a>
+      <a href="#community">Community</a>
+    </nav>
+  </header>
+
+
+  <main>
+
+    <!-- SERVER -->
+    <section class="hero" id="server">
+
+      <span class="badge">● PLAYIXG SERVER</span>
+
+      <h1>playixg</h1>
+
+      <p class="sub">
+        A Java + Bedrock Minecraft community powered by Purpur,
+        with a dedicated hub and a growing set of gameplay features.
+      </p>
+
+
+      <!-- JAVA IP -->
+      <div class="join">
+
+        <input
+          id="javaAddress"
+          value="playixlol.minekeep.gg"
+          readonly
+          aria-label="Java Minecraft server address"
+        >
+
+        <button onclick="copyJava()">
+          COPY JAVA IP
+        </button>
+
+      </div>
+
+
+      <!-- BEDROCK IP -->
+      <div class="join" style="margin-top:10px;">
+
+        <input
+          id="bedrockAddress"
+          value="playixglol.bedrock.minekeep.gg"
+          readonly
+          aria-label="Bedrock Minecraft server address"
+        >
+
+        <button onclick="copyBedrock()">
+          COPY BEDROCK IP
+        </button>
+
+      </div>
+
+
+      <p
+        id="copyStatus"
+        class="muted"
+        style="font-size:12px;min-height:18px;"
+      ></p>
+
+
+      <p class="muted" style="font-size:12px;">
+        Java:
+        <strong>playixlol.minekeep.gg</strong>
+        ·
+        Bedrock:
+        <strong>playixglol.bedrock.minekeep.gg</strong>
+        ·
+        Bedrock Port:
+        <strong>19132</strong>
+      </p>
+
+
+      <!-- DISCORD -->
+      <a
+        class="button discord"
+        href="https://discord.gg/HTgthPMBB"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        JOIN OUR DISCORD
+      </a>
+
+    </section>
+
+
+
+    <!-- FEATURES -->
+    <section class="grid" id="features">
+
+      <article class="card">
+
+        <div class="icon">🏠</div>
+
+        <h3>Hubbly Hub</h3>
+
+        <p>
+          A dedicated hub and lobby experience
+          for players before they enter the server.
+        </p>
+
+      </article>
+
+
+      <article class="card">
+
+        <div class="icon">⛏️</div>
+
+        <h3>VeinMiner</h3>
+
+        <p>
+          Mine connected blocks faster with
+          VeinMiner in supported gameplay worlds.
+        </p>
+
+      </article>
+
+
+      <article class="card">
+
+        <div class="icon">🌍</div>
+
+        <h3>Java + Bedrock</h3>
+
+        <p>
+          Java and Bedrock players can play
+          together through MineKeep's crossplay network.
+        </p>
+
+      </article>
+
+    </section>
+
+
+
+    <!-- SERVER INFORMATION + PLUGINS -->
+    <section class="info" id="plugins">
+
+
+      <article class="card">
+
+        <h3>Server Information</h3>
+
+        <div class="row">
+          <span class="muted">Edition</span>
+          <strong>Java + Bedrock</strong>
+        </div>
+
+        <div class="row">
+          <span class="muted">Software</span>
+          <strong>Purpur 26.3</strong>
+        </div>
+
+        <div class="row">
+          <span class="muted">Host</span>
+          <strong>MineKeep</strong>
+        </div>
+
+        <div class="row">
+          <span class="muted">Bedrock Port</span>
+          <strong>19132</strong>
+        </div>
+
+      </article>
+
+
+      <article class="card">
+
+        <h3>Playixg Plugin Setup</h3>
+
+        <p>
+          Current planned core plugins:
+        </p>
+
+        <div class="plugins">
+
+          <span class="tag">Hubbly</span>
+
+          <span class="tag">LuckPerms</span>
+
+          <span class="tag">EssentialsC</span>
+
+          <span class="tag">WorldEdit</span>
+
+          <span class="tag">DyClaim</span>
+
+          <span class="tag">VeinMiner</span>
+
+          <span class="tag">ViaVersion</span>
+
+          <span class="tag">ViaBackwards</span>
+
+          <span class="tag">Simple Voice Chat</span>
+
+        </div>
+
+      </article>
+
+    </section>
+
+
+
+    <!-- COMMUNITY -->
+    <section class="info" id="community">
+
+      <article class="card">
+
+        <h3>Community</h3>
+
+        <p>
+          Join the playixg Discord for announcements,
+          updates, events and server news.
+        </p>
+
+        <a
+          class="button"
+          href="https://discord.gg/HTgthPMBB"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          DISCORD
+        </a>
+
+      </article>
+
+
+      <article class="card">
+
+        <h3>Crossplay</h3>
+
+        <p>
+          Bedrock players should use:
+        </p>
+
+        <p>
+          <strong>playixglol.bedrock.minekeep.gg</strong>
+        </p>
+
+        <p>
+          Port: <strong>19132</strong>
+        </p>
+
+        <p>
+          MineKeep manages the crossplay proxy globally.
+        </p>
+
+      </article>
+
+    </section>
+
+  </main>
+
+
+  <footer>
+    © 2026 playixg • Minecraft server community
+  </footer>
+
+</div>
+
+
+
+<script>
+
+function copyText(id, message) {
+
+  const input = document.getElementById(id);
+
+  navigator.clipboard.writeText(input.value)
+
+    .then(() => {
+
+      document.getElementById("copyStatus").textContent = message;
+
+    })
+
+    .catch(() => {
+
+      input.select();
+
+      document.execCommand("copy");
+
+      document.getElementById("copyStatus").textContent = message;
+
+    });
+
+}
+
+
+function copyJava() {
+
+  copyText(
+    "javaAddress",
+    "Java address copied!"
+  );
+
+}
+
+
+function copyBedrock() {
+
+  copyText(
+    "bedrockAddress",
+    "Bedrock address copied!"
+  );
+
+}
+
+</script>
+
+</body>
+</html>
